@@ -146,7 +146,7 @@ mc6847_friend_device::mc6847_friend_device(const machine_config &mconfig, device
 //  to the clock
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE emu_timer *mc6847_friend_device::setup_timer(device_timer_id id, double offset, double period)
+inline ATTR_FORCE_INLINE emu_timer *mc6847_friend_device::setup_timer(device_timer_id id, double offset, double period)
 {
 	emu_timer *timer = timer_alloc(id);
 	timer->adjust(
@@ -220,8 +220,11 @@ void mc6847_friend_device::device_post_load(void)
 //-------------------------------------------------
 //  update_field_sync_timer
 //-------------------------------------------------
-
+#ifdef WIN32
 ATTR_FORCE_INLINE void mc6847_friend_device::update_field_sync_timer(void)
+#else
+inline ATTR_FORCE_INLINE void mc6847_friend_device::update_field_sync_timer(void)
+#endif
 {
 	// are we expecting field sync?
 	bool expected_field_sync = (m_physical_scanline < m_field_sync_falling_edge_scanline)
@@ -261,7 +264,7 @@ void mc6847_friend_device::device_timer(emu_timer &timer, device_timer_id id, in
 //  new_frame
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void mc6847_friend_device::new_frame(void)
+inline ATTR_FORCE_INLINE void mc6847_friend_device::new_frame(void)
 {
 	m_physical_scanline = 0;
 	m_logical_scanline = 0;
@@ -298,7 +301,7 @@ const char *mc6847_friend_device::scanline_zone_string(scanline_zone zone)
 //  change_horizontal_sync
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void mc6847_friend_device::change_horizontal_sync(bool line)
+inline ATTR_FORCE_INLINE void mc6847_friend_device::change_horizontal_sync(bool line)
 {
 	g_profiler.start(PROFILER_USER1);
 
@@ -367,7 +370,7 @@ ATTR_FORCE_INLINE void mc6847_friend_device::change_horizontal_sync(bool line)
 //  change_field_sync
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void mc6847_friend_device::change_field_sync(bool line)
+inline ATTR_FORCE_INLINE void mc6847_friend_device::change_field_sync(bool line)
 {
 	/* output field sync */
 	if (line != m_field_sync)
@@ -393,7 +396,7 @@ ATTR_FORCE_INLINE void mc6847_friend_device::change_field_sync(bool line)
 //  next_scanline
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void mc6847_friend_device::next_scanline(void)
+inline ATTR_FORCE_INLINE void mc6847_friend_device::next_scanline(void)
 {
 	/* advance to next scanline */
 	m_physical_scanline++;
@@ -696,7 +699,7 @@ void mc6847_base_device::record_scanline_res(int scanline, INT32 start_pos, INT3
 //  record_body_scanline
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void mc6847_base_device::record_body_scanline(UINT16 physical_scanline, UINT16 scanline, INT32 start_pos, INT32 end_pos)
+inline ATTR_FORCE_INLINE void mc6847_base_device::record_body_scanline(UINT16 physical_scanline, UINT16 scanline, INT32 start_pos, INT32 end_pos)
 {
 	// sanity checks
 	assert(scanline < 192);
@@ -799,7 +802,7 @@ void mc6847_base_device::field_sync_changed(bool line)
 //  border_value
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE mc6847_base_device::pixel_t mc6847_base_device::border_value(UINT8 mode, const pixel_t *palette, bool is_mc6847t1)
+inline ATTR_FORCE_INLINE mc6847_base_device::pixel_t mc6847_base_device::border_value(UINT8 mode, const pixel_t *palette, bool is_mc6847t1)
 {
 	pixel_t result;
 	switch(mc6847_friend_device::border_value(mode, is_mc6847t1))

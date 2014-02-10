@@ -84,10 +84,12 @@
 #include "crsshair.h"
 #include "validity.h"
 #include "debug/debugcon.h"
-#include "webengine.h"
+//#include "webengine.h"
 #include <time.h>
 
-
+#ifdef RETRO_AND
+#include "log.h"
+#endif
 
 /***************************************************************************
     GLOBAL VARIABLES
@@ -156,7 +158,7 @@ int mame_execute(emu_options &options, osd_interface &osd)
 			options.parse_standard_inis(errors);
 		}
 
-	web_engine web(options);
+	//web_engine web(options);
 
 	while (error == MAMERR_NONE && !exit_pending)
 	{
@@ -196,8 +198,8 @@ int mame_execute(emu_options &options, osd_interface &osd)
 		// looooong term: remove this
 		global_machine = &machine;
 
-		web.set_machine(machine);
-		web.push_message("update_machine");
+	//	web.set_machine(machine);
+	//	web.push_message("update_machine");
 		// run the machine
 		error = machine.run(firstrun);
 		firstrun = false;
@@ -250,6 +252,10 @@ output_delegate mame_set_output_channel(output_channel channel, output_delegate 
 void mame_file_output_callback(FILE *param, const char *format, va_list argptr)
 {
 	vfprintf(param, format, argptr);
+#ifdef RETRO_AND
+        char text[512];
+	vsprintf(text,format,argptr);
+#endif
 }
 
 

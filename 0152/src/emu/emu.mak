@@ -124,7 +124,7 @@ EMUOBJS = \
 	$(EMUOBJ)/machine.o \
 	$(EMUOBJ)/mconfig.o \
 	$(EMUOBJ)/memarray.o \
-	$(EMUOBJ)/memory.o \
+	$(EMUOBJ)/emumemory.o \
 	$(EMUOBJ)/network.o \
 	$(EMUOBJ)/output.o \
 	$(EMUOBJ)/render.o \
@@ -165,10 +165,9 @@ EMUOBJS = \
 	$(EMUOBJ)/debug/textbuf.o \
 	$(EMUOBJ)/debugint/debugint.o \
 	$(EMUOBJ)/profiler.o \
-	$(EMUOBJ)/webengine.o \
 	$(OSDOBJ)/osdepend.o \
 	$(OSDOBJ)/osdnet.o
-
+#	$(EMUOBJ)/webengine.o 
 EMUSOUNDOBJS = \
 	$(EMUOBJ)/sound/filter.o \
 	$(EMUOBJ)/sound/flt_vol.o \

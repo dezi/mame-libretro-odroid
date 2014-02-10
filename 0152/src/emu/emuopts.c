@@ -38,7 +38,11 @@ const options_entry emu_options::s_option_entries[] =
 	{ OPTION_SAMPLEPATH ";sp",                           "samples",   OPTION_STRING,     "path to samplesets" },
 	{ OPTION_ARTPATH,                                    "artwork",   OPTION_STRING,     "path to artwork files" },
 	{ OPTION_CTRLRPATH,                                  "ctrlr",     OPTION_STRING,     "path to controller definitions" },
+#ifdef RETRO_AND /*LIBRETRO INIPATH FOR ANDROID */
+  { "inipath",                     ".;ini;/mnt/sdcard",     0,                 "path to ini files" },
+#else
 	{ OPTION_INIPATH,                                    ".;ini",     OPTION_STRING,     "path to ini files" },
+#endif
 	{ OPTION_FONTPATH,                                   ".",         OPTION_STRING,     "path to font files" },
 	{ OPTION_CHEATPATH,                                  "cheat",     OPTION_STRING,     "path to cheat files" },
 	{ OPTION_CROSSHAIRPATH,                              "crosshair", OPTION_STRING,     "path to crosshair files" },

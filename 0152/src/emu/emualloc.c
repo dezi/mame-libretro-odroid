@@ -265,7 +265,12 @@ void resource_pool::add(resource_pool_item &item)
 	// before, so if we don't find it, check 4 bytes ahead
 	memory_entry *entry = memory_entry::find(item.m_ptr);
 	if (entry == NULL)
+#ifdef USE_ARM_HACK
+        	entry = memory_entry::find(reinterpret_cast<UINT8 *>(item.m_ptr) - 8);
+#else
 		entry = memory_entry::find(reinterpret_cast<UINT8 *>(item.m_ptr) - sizeof(size_t));
+#endif
+
 	assert(entry != NULL);
 	item.m_id = entry->m_id;
 	if (LOG_ALLOCS)

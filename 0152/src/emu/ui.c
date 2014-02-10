@@ -318,6 +318,9 @@ void ui_initialize(running_machine &machine)
     ui_display_startup_screens - display the
     various startup screens
 -------------------------------------------------*/
+#ifdef RETRO
+extern bool nagscreenpatch_enable;
+#endif
 
 int ui_display_startup_screens(running_machine &machine, int first_time, int show_disclaimer)
 {
@@ -326,6 +329,11 @@ int ui_display_startup_screens(running_machine &machine, int first_time, int sho
 	int show_gameinfo = !machine.options().skip_gameinfo();
 	int show_warnings = TRUE;
 	int state;
+
+#ifdef RETRO
+	if(nagscreenpatch_enable==true)
+		show_gameinfo = show_warnings = show_disclaimer = FALSE;
+#endif
 
 	/* disable everything if we are using -str for 300 or fewer seconds, or if we're the empty driver,
 	   or if we are debugging */

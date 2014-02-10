@@ -451,7 +451,7 @@ const char *m6809_base_device::inputnum_string(int inputnum)
 //  read_exgtfr_register
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE m6809_base_device::exgtfr_register m6809_base_device::read_exgtfr_register(UINT8 reg)
+inline ATTR_FORCE_INLINE m6809_base_device::exgtfr_register m6809_base_device::read_exgtfr_register(UINT8 reg)
 {
 	exgtfr_register result;
 	result.byte_value = 0xFF;
@@ -478,7 +478,7 @@ ATTR_FORCE_INLINE m6809_base_device::exgtfr_register m6809_base_device::read_exg
 //  write_exgtfr_register
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void m6809_base_device::write_exgtfr_register(UINT8 reg, m6809_base_device::exgtfr_register value)
+inline ATTR_FORCE_INLINE void m6809_base_device::write_exgtfr_register(UINT8 reg, m6809_base_device::exgtfr_register value)
 {
 	switch(reg & 0x0F)
 	{
@@ -511,7 +511,7 @@ void m6809_base_device::log_illegal()
 //  execute_one - try to execute a single instruction
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void m6809_base_device::execute_one()
+inline ATTR_FORCE_INLINE void m6809_base_device::execute_one()
 {
 	switch(pop_state())
 	{

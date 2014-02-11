@@ -65,9 +65,7 @@ OSDCOREOBJS := \
 # OSD mini library
 #-------------------------------------------------
 OSDOBJS = $(LIBCOOBJ)/libco.o 
-ifeq ($(platform),android)
 OSDOBJS += $(LIBCOOBJ)/armeabi_asm.o
-endif
 
 #-------------------------------------------------
 # rules for building the libaries

@@ -97,7 +97,7 @@ void retro_get_system_info(struct retro_system_info *info)
 {   	
    memset(info, 0, sizeof(*info));
    info->library_name = "MAME 2014";
-   info->library_version = "0.152";
+   info->library_version = "0.153";
    info->valid_extensions = "zip|chd|7z";
    info->need_fullpath = true;   
    info->block_extract = true;
@@ -149,7 +149,7 @@ void retro_init (void){
 		if (environ_cb(RETRO_ENVIRONMENT_GET_SYSTEM_DIRECTORY, &dir) && dir)
 		{
 			// if defined, use the system directory
-			retro_system_directory=dir;
+			retro_system_directory=(char *)dir;
 			printf("Retro SYSTEM_DIRECTORY %s\n",retro_system_directory);
       
 		}		   
@@ -157,13 +157,14 @@ void retro_init (void){
 		if (environ_cb(RETRO_ENVIRONMENT_GET_SAVE_DIRECTORY, &dir) && dir)
 		{
 			// If save directory is defined use it, otherwise use system directory
-			retro_save_directory = *dir ? dir : retro_system_directory;
+			retro_save_directory = *dir ? (char *)dir : retro_system_directory;
 			printf("Retro SAVE_DIRECTORY %s\n",retro_save_directory);
       
 		}
+
+		if (! retro_system_directory) retro_system_directory = (char *) "~/.config/retroarch";
+		if (! retro_save_directory  ) retro_save_directory   = (char *) "~/.config/retroarch/mame";
 		
-
-
     	if (!environ_cb(RETRO_ENVIRONMENT_SET_PIXEL_FORMAT, &fmt))
     	{
     		fprintf(stderr, "RGB pixel format is not supported.\n");

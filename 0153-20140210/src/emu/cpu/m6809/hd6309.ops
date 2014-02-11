@@ -18,7 +18,7 @@ MAIN:
 	burn_any_delay_loops();
 
 	// dispatch opcode
-	switch(m_opcode)
+	switch((int)m_opcode)
 	{
 		case 0x00:										%DIRECT;		%NEG8;	return;
 		case 0x01:				%IMM_IM;				%DIRECT;		%OIM;	return;

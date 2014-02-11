@@ -145,7 +145,7 @@ inline ATTR_FORCE_INLINE UINT8 konami_cpu_device::read_operand(int ordinal)
 //  write_operand
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void konami_cpu_device::write_operand(UINT8 data)
+inline ATTR_FORCE_INLINE void konami_cpu_device::write_operand(UINT8 data)
 {
 	super::write_operand(data);
 }
@@ -156,7 +156,7 @@ ATTR_FORCE_INLINE void konami_cpu_device::write_operand(UINT8 data)
 //  write_operand
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void konami_cpu_device::write_operand(int ordinal, UINT8 data)
+inline ATTR_FORCE_INLINE void konami_cpu_device::write_operand(int ordinal, UINT8 data)
 {
 	switch(m_addressing_mode)
 	{
@@ -172,7 +172,7 @@ ATTR_FORCE_INLINE void konami_cpu_device::write_operand(int ordinal, UINT8 data)
 //  ireg
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE UINT16 &konami_cpu_device::ireg()
+inline ATTR_FORCE_INLINE UINT16 &konami_cpu_device::ireg()
 {
 	switch(m_opcode & 0x70)
 	{
@@ -192,7 +192,7 @@ ATTR_FORCE_INLINE UINT16 &konami_cpu_device::ireg()
 //  read_exgtfr_register
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE m6809_base_device::exgtfr_register konami_cpu_device::read_exgtfr_register(UINT8 reg)
+inline ATTR_FORCE_INLINE m6809_base_device::exgtfr_register konami_cpu_device::read_exgtfr_register(UINT8 reg)
 {
 	exgtfr_register result;
 	result.word_value = 0x00FF;
@@ -215,7 +215,7 @@ ATTR_FORCE_INLINE m6809_base_device::exgtfr_register konami_cpu_device::read_exg
 //  write_exgtfr_register
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void konami_cpu_device::write_exgtfr_register(UINT8 reg, m6809_base_device::exgtfr_register value)
+inline ATTR_FORCE_INLINE void konami_cpu_device::write_exgtfr_register(UINT8 reg, m6809_base_device::exgtfr_register value)
 {
 	switch(reg & 0x07)
 	{
@@ -285,7 +285,7 @@ template<class T> T konami_cpu_device::safe_shift_left(T value, UINT32 shift)
 //  lmul
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void konami_cpu_device::lmul()
+inline ATTR_FORCE_INLINE void konami_cpu_device::lmul()
 {
 	PAIR result;
 
@@ -311,7 +311,7 @@ ATTR_FORCE_INLINE void konami_cpu_device::lmul()
 //  divx
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void konami_cpu_device::divx()
+inline ATTR_FORCE_INLINE void konami_cpu_device::divx()
 {
 	UINT16 result;
 	UINT8 remainder;
@@ -355,7 +355,7 @@ void konami_cpu_device::set_lines(UINT8 data)
 //  execute_one - try to execute a single instruction
 //-------------------------------------------------
 
-ATTR_FORCE_INLINE void konami_cpu_device::execute_one()
+inline ATTR_FORCE_INLINE void konami_cpu_device::execute_one()
 {
 	switch(pop_state())
 	{

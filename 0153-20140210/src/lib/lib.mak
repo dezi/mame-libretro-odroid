@@ -502,14 +502,14 @@ $(LIBOBJ)/lua/%.o: $(LIBSRC)/lua/%.c | $(OSPREBUILD)
 # web library objects
 #-------------------------------------------------
 
-WEBOBJS = \
-	$(LIBOBJ)/web/mongoose.o \
-	$(LIBOBJ)/web/json/json_reader.o \
-	$(LIBOBJ)/web/json/json_value.o \
-	$(LIBOBJ)/web/json/json_writer.o \
+#WEBOBJS = \
+#	$(LIBOBJ)/web/mongoose.o \
+#	$(LIBOBJ)/web/json/json_reader.o \
+#	$(LIBOBJ)/web/json/json_value.o \
+#	$(LIBOBJ)/web/json/json_writer.o \
 
-$(OBJ)/libweb.a: $(WEBOBJS)
+#$(OBJ)/libweb.a: $(WEBOBJS)
 
-$(LIBOBJ)/web/%.o: $(LIBSRC)/web/%.cpp | $(OSPREBUILD)
-	@echo Compiling $<...
-	$(CC) $(CDEFS) $(CFLAGS) -I$(LIBSRC)/web -c $< -o $@
+#$(LIBOBJ)/web/%.o: $(LIBSRC)/web/%.cpp | $(OSPREBUILD)
+#	@echo Compiling $<...
+#	$(CC) $(CDEFS) $(CFLAGS) -I$(LIBSRC)/web -c $< -o $@

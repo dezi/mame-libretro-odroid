@@ -6,7 +6,7 @@
 #include "emu.h"
 #include "clifront.h"
 #include "render.h"
-#include "ui.h"
+#include "ui/ui.h"
 #include "uiinput.h"
 
 #include "libretro.h" 

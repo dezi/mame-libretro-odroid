@@ -1,0 +1,8 @@
+display_name = "Arcade (MAME 2014)"
+authors = "MAMEdev"
+supported_extensions = "zip|7z|chd"
+corename = "MAME 2014 (0.153-20140210)"
+manufacturer = "Various"
+systemname = "Arcade (various)"
+license = "MAME"
+permissions = ""

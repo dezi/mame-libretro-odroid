@@ -65,7 +65,9 @@ OSDCOREOBJS := \
 # OSD mini library
 #-------------------------------------------------
 OSDOBJS = $(LIBCOOBJ)/libco.o 
+ifeq ($(armplatform), 1)
 OSDOBJS += $(LIBCOOBJ)/armeabi_asm.o
+endif
 
 #-------------------------------------------------
 # rules for building the libaries
